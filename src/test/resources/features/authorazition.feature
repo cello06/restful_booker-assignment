@@ -6,4 +6,3 @@ Feature: Creating access token
     Then The status code should be as 200
     And The access token should not be empty or null
 
-    

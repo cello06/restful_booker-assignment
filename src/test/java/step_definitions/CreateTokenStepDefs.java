@@ -21,12 +21,12 @@ public class CreateTokenStepDefs extends BaseStep{
     public void theUserSendsAPOSTRequestAsUsernameAndAsPasswordToTheCreateTokenEndpoint(String username, String password) {
         AccessToken token=new AccessToken(username,password);
         response= RestAssured.given().spec(request).contentType("application/json").body(token).when().post(authTokenEndpoint);
+        accessToken= response.jsonPath().getString("token");
     }
 
 
     @And("The access token should not be empty or null")
     public void theAccessTokenShouldNotBeEmptyOrNull() {
-        accessToken= response.jsonPath().getString("token");
         Assertions.assertThat(accessToken).isNotEmpty();
         Assertions.assertThat(accessToken).isNotNull();
         System.out.println(accessToken);
