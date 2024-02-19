@@ -17,6 +17,7 @@ public class DeleteBookingStepDefs extends BaseStep {
 
     @And("Validate that specified user is deleted")
     public void validateThatSpecifiedUserIsDeleted() {
+
         response=APIUtils.sendGetRequest(request,createBookingEndpoint);
         List<Integer> listOfIds= response.jsonPath().getList("bookingid");
         Assertions.assertThat(listOfIds.contains(bookingId)).isFalse();
